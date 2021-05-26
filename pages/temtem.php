@@ -2,68 +2,83 @@
 require __DIR__ . '/../pages/partials/header.php';
 $url = 'https://temtem-api.mael.tech/api/temtems'; // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
-$characters = json_decode($data); // decode the JSON feed
-$image = $characters[0]->portraitWikiUrl;
+$temtem = json_decode($data); // decode the JSON feed
+$image = $temtem[0]->portraitWikiUrl;
 $imageData = base64_encode(file_get_contents($image));
 
 ?>
 <div class="container">
 
-    <h1 class=" text-center"><?php echo $characters[0]->name ?></h1>
+    <h1 class=" text-center"><?php echo $temtem[0]->name ?></h1>
     <hr />
     <div class="row">
         <div class="col-lg-4 col-md-4 text-center">
             <div class="card" style="width: 18rem;">
-                <?php echo '<img class="card-img-top" src="data:image/jpeg;base64,'.$imageData.'" alt="Card image cap">';?>
+                <?php echo '<img class="card-img-top" src="data:image/jpeg;base64,' . $imageData . '" alt="Card image cap">'; ?>
                 <div class="card-body">
 
-                    <p class="card-text"><?php echo $characters[0]->gameDescription ?></p>
+                    <p class="card-text"><?php echo $temtem[0]->gameDescription ?></p>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 text-center">
             <h1>Tempedia Data</h1>
-            <tbody>
-                <tr>
-                    <td><a>Type</a></td>
-                    <td><a>Peck</a></td>
-                </tr>
-                <tr>
-                <td>
-                <a>traits</a>
-                </td>
-                    <td><a>Peck</a></td>
-                </tr>
-                <tr>
-                    <td><a>height</a></td>
-                    <td><a>Peck</a></td>
-                </tr>
-                <tr>
-                    <td><a>weight</a></td>
-                    <td><a>Peck</a></td>
-                </tr>
-                <tr>
-                    <td><a>location</a></td>
-                    <td><a>Peck</a></td>
-                </tr>
-                <tr>
-                    <td><a>sell price</a></td>
-                    <td><a>Peck</a></td>
-                </tr>
-            </tbody>
+            <table class="data-table">
+
+                <tbody>
+                    <tr>
+                        <td><a>Type</a></td>
+                        <td><a>Peck</a></td>
+                    </tr>
+                    <tr>
+                        <td><a>traits</a></td>
+                        <td><a><?php echo $temtem[0]->traits[0];
+                                echo $temtem[0]->traits[1]  ?></a></td>
+                    </tr>
+                    <tr>
+                        <td><a>height</a></td>
+                        <td><a><?php echo $temtem[0]->details->height->cm ?>m
+                                (<?php echo $temtem[0]->details->height->inches; ?>")</a></td>
+                    </tr>
+                    <tr>
+                        <td><a>weight</a></td>
+                        <td><a><?php echo $temtem[0]->details->weight->kg ?>kg
+                                (<?php echo $temtem[0]->details->weight->lbs; ?>lbs)</a></td>
+                    </tr>
+                    <tr>
+                        <td><a>location</a></td>
+                        <td><a><?php echo "blabla" ?></a></td>
+                    </tr>
+                    <tr>
+                        <td><a>sell price</a></td>
+                        <td><a><?php echo "blabla" ?></a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-lg-4 col-md-4 text-center">
             <div class="row">
                 <h1>tvYields</h1>
+                <table>
+                    <tbody>
+                        <tr>
+                            <?php
+                            foreach ($temtem[0]->tvYields as $key => $value) {
+                                echo "<a>$key=$value</a>";
+                            }
+                            ?>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="row">
                 <h1>Breeding</h1>
                 <tbody>
-                <tr>
-                    <td><a>gender</a></td>
-                    <td><a>Peck</a></td>
-                </tr>
-            </tbody>
+                    <tr>
+                        <td><a>gender</a></td>
+                        <td><a>Peck</a></td>
+                    </tr>
+                </tbody>
             </div>
 
         </div>
@@ -96,5 +111,5 @@ $imageData = base64_encode(file_get_contents($image));
     </div>
 </div>
 <?php
-    require __DIR__ . '/../pages/partials/footer.php';
-    ?>
+require __DIR__ . '/../pages/partials/footer.php';
+?>
