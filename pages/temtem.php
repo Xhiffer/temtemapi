@@ -73,12 +73,19 @@ $imageData = base64_encode(file_get_contents($image));
             </div>
             <div class="row">
                 <h1>Breeding</h1>
+                <table>
                 <tbody>
                     <tr>
                         <td><a>gender</a></td>
-                        <td><a>Peck</a></td>
+                        <td><a><?php 
+                        echo $temtem[0]->genderRatio->male .' '. key($temtem[0]->genderRatio) . ', ' .
+                        next($temtem[0]->genderRatio) .' '. key($temtem[0]->genderRatio)
+                        ?>
+                        
+                        </a></td>
                     </tr>
                 </tbody>
+                </table>
             </div>
 
         </div>
