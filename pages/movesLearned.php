@@ -1,7 +1,26 @@
+<!-- $temtems[$i]->techniques[$j]['name'] -->
 <?php
 require __DIR__ . '/../pages/partials/header.php';
+$url = 'https://temtem-api.mael.tech/api/temtems'; // path to your JSON file
+$data = file_get_contents($url); // put the contents of the file into a variable
+$temtems = json_decode($data); // decode the JSON feed
+// echo '<pre>'; print_r($temtems);echo '</pre>';
+// die();;
+// echo '<pre>'; print_r($tech); echo '</pre>';
+for ($i=0; $i < sizeof($temtems); $i++) {
+    $tech = $temtems[$i];
+    $techName =  $tech->techniques;
+    echo '<h1>' . $tech->name . '</h1>' . '<br><hr>';
+    for ($j=0; $j < sizeof($techName); $j++) {
+        echo $techName[$j]->name. '<br>';
+    }
+    echo '<hr><hr>';
+}
+
 ?>
 
+
+<link rel="stylesheet" href="../css/type.css"></style>
 <div class="tabset-moves-game sv-tabs-wrapper">
     <div class="sv-tabs-tab-list">
         <a class="sv-tabs-tab active" href="#tab-moves-17">Let's Go Pikachu/Let's Go Eevee</a>
