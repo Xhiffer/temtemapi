@@ -18,7 +18,7 @@ $imageData = base64_encode(file_get_contents($image));
     <p class="card-text"><?php echo $characters[0]->gameDescription ?></p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">AZERTY uiop</li>
     <li class="list-group-item">Dapibus ac facilisis in</li>
     <li class="list-group-item">Vestibulum at eros</li>
   </ul>
