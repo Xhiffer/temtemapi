@@ -1,9 +1,7 @@
 <!-- $temtems[$i]->techniques[$j]['name'] -->
 <?php
 require __DIR__ . '/../pages/partials/header.php';
-$url = 'https://temtem-api.mael.tech/api/temtems'; // path to your JSON file
-$data = file_get_contents($url); // put the contents of the file into a variable
-$temtems = json_decode($data); // decode the JSON feed
+$temtems = $temtemsdata->fetchAll();
 // echo '<pre>'; print_r($temtems);echo '</pre>';
 // die();;
 // echo '<pre>'; print_r($tech); echo '</pre>';
