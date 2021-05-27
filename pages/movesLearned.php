@@ -21,6 +21,17 @@ for ($i=0; $i < sizeof($temtems); $i++) {
 
 
 <link rel="stylesheet" href="../css/type.css"></style>
+<div>
+<select name="TEMTEM" id="temtem">
+<?php
+    for ($i=0; $i < sizeof($temtems); $i++) {
+        $tech = $temtems[$i];
+        echo '<option value="'.$tech->name.'">'.$tech->name.'</option>';
+    }
+    echo '<br>';
+?>
+</select>
+</div>
 <div class="tabset-moves-game sv-tabs-wrapper">
     <div class="sv-tabs-tab-list">
         <a class="sv-tabs-tab active" href="#tab-moves-17">Let's Go Pikachu/Let's Go Eevee</a>
