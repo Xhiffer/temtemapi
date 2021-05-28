@@ -49,7 +49,4 @@ $temtem = json_decode($data);
         <a class="type-icon type-poison" href="../types/poison.php"><?php echo $temtem[0]->types ?></a>
     </td> -->
 
-<?php
-echo '<pre>'; var_dump($temtem[0]); echo'</pre>';
-?>
 
