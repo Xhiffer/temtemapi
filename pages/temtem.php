@@ -35,7 +35,7 @@ $imageData = base64_encode(file_get_contents($image));
                     </tr>
                     <tr>
                         <td><a>height</a></td>
-                        <td><a><?php echo $temtem->details->height->cm ?>m
+                        <td><a><?php echo $temtem->details->height->cm ?>cm
                                 (<?php echo $temtem->details->height->inches; ?>")</a></td>
                     </tr>
                     <tr>
