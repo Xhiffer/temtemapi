@@ -1,15 +1,13 @@
 <?php
 require __DIR__ . '/../pages/partials/header.php';
-$url = 'https://temtem-api.mael.tech/api/temtems'; // path to your JSON file
-$data = file_get_contents($url); // put the contents of the file into a variable
-$temtem = json_decode($data); // decode the JSON feed
-$image = $temtem[0]->portraitWikiUrl;
+$temtem = $temtemsdata->insertOne($_GET['id']);
+$image = $temtem->portraitWikiUrl;
 $imageData = base64_encode(file_get_contents($image));
 
 ?>
 <div class="container">
 
-    <h1 class=" text-center"><?php echo $temtem[0]->name ?></h1>
+    <h1 class=" text-center"><?php echo $temtem->name ?></h1>
     <hr />
     <div class="row">
         <div class="col-lg-4 col-md-4 text-center">
@@ -17,7 +15,7 @@ $imageData = base64_encode(file_get_contents($image));
                 <?php echo '<img class="card-img-top" src="data:image/jpeg;base64,' . $imageData . '" alt="Card image cap">'; ?>
                 <div class="card-body">
 
-                    <p class="card-text"><?php echo $temtem[0]->gameDescription ?></p>
+                    <p class="card-text"><?php echo $temtem->gameDescription ?></p>
                 </div>
             </div>
         </div>
@@ -32,18 +30,18 @@ $imageData = base64_encode(file_get_contents($image));
                     </tr>
                     <tr>
                         <td><a>traits</a></td>
-                        <td><a><?php echo $temtem[0]->traits[0];
-                                echo $temtem[0]->traits[1]  ?></a></td>
+                        <td><a><?php echo $temtem->traits[0] . ' ';
+                                echo $temtem->traits[1]  ?></a></td>
                     </tr>
                     <tr>
                         <td><a>height</a></td>
-                        <td><a><?php echo $temtem[0]->details->height->cm ?>m
-                                (<?php echo $temtem[0]->details->height->inches; ?>")</a></td>
+                        <td><a><?php echo $temtem->details->height->cm ?>m
+                                (<?php echo $temtem->details->height->inches; ?>")</a></td>
                     </tr>
                     <tr>
                         <td><a>weight</a></td>
-                        <td><a><?php echo $temtem[0]->details->weight->kg ?>kg
-                                (<?php echo $temtem[0]->details->weight->lbs; ?>lbs)</a></td>
+                        <td><a><?php echo $temtem->details->weight->kg ?>kg
+                                (<?php echo $temtem->details->weight->lbs; ?>lbs)</a></td>
                     </tr>
                     <tr>
                         <td><a>location</a></td>
@@ -63,7 +61,7 @@ $imageData = base64_encode(file_get_contents($image));
                     <tbody>
                         <tr>
                             <?php
-                            foreach ($temtem[0]->tvYields as $key => $value) {
+                            foreach ($temtem->tvYields as $key => $value) {
                                 echo "<a>$key=$value</a>";
                             }
                             ?>
@@ -74,17 +72,17 @@ $imageData = base64_encode(file_get_contents($image));
             <div class="row">
                 <h1>Breeding</h1>
                 <table>
-                <tbody>
-                    <tr>
-                        <td><a>gender</a></td>
-                        <td><a><?php 
-                        echo $temtem[0]->genderRatio->male .' '. key($temtem[0]->genderRatio) . ', ' .
-                        next($temtem[0]->genderRatio) .' '. key($temtem[0]->genderRatio)
-                        ?>
-                        
-                        </a></td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        <tr>
+                            <td><a>gender</a></td>
+                            <td><a><?php
+                                    echo $temtem->genderRatio->male . ' ' . key($temtem->genderRatio) . ', ' .
+                                        next($temtem->genderRatio) . ' ' . key($temtem->genderRatio)
+                                    ?>
+
+                                </a></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
 
@@ -100,6 +98,15 @@ $imageData = base64_encode(file_get_contents($image));
     </div>
     <div class="row">
         <h1>Evolution Chart</h1>
+        <?php
+        if ($temtems[113]->evolution->evolves == true) {
+            foreach ($temtems[113]->evolution->evolutionTree as $value) {
+                var_dump($value);
+            }
+        }else{
+            echo '<p>This temtems can\'t evolve </p>';
+        }
+        ?>
     </div>
     <div class="row">
         <div class="col-lg-8 col-md-8 ">

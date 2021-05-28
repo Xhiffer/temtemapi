@@ -20,12 +20,23 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="./index.php?page=list">Mon Blog</a>
+            <a class="navbar-brand" href="./index.php">Mon Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.php?page=list">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./index.php?page=newArticle">Créer un article</a></li>
+                    <select name="TEMTEM" id="temtem">
+                        <?php
+                            for ($i=0; $i < sizeof($temtems); $i++) {
+                                $tech = $temtems[$i];
+                                echo '<option value='.$tech->name. 'href= ./index.php?page=temtem&id='.$tech->number.'
+                                >'.$tech->name.'</option>';
+                            }
+                            echo '<br>';
+                        ?>
+
+                    </select>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.php?page=movesLearned">Moves</a></li>
                 </ul>
             </div>
         </div>
