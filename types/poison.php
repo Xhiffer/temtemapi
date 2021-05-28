@@ -230,8 +230,8 @@ require __DIR__ . '/../pages/partials/header.php';
                 <p class="type-fx-list">
                     <a class="type-icon type-grass" href="">Grass</a>
                     <a class="type-icon type-fighting" href="">Fighting</a>
-                    <a class="type-icon type-poison" href="">Poison</a>
-                    <a class="type-icon type-bug" href="">Bug</a>
+                    <a class="type-icon type-poison" href="poison.php">Poison</a>
+                    <a class="type-icon type-bug" href="bug.php">Bug</a>
                     <a class="type-icon type-fairy" href="">Fairy</a>
                 </p>
                 <p>

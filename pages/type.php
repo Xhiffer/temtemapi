@@ -1,5 +1,9 @@
 <?php
 require __DIR__ . '/../pages/partials/header.php';
+
+$url = 'https://temtem-api.mael.tech/api/temtems'; // path to your JSON file
+$data = file_get_contents($url); // put the contents of the file into a variable
+$temtem = json_decode($data);
 ?>
 
     <style>
@@ -40,6 +44,12 @@ require __DIR__ . '/../pages/partials/header.php';
         <a class="type-icon type-bug" href="../types/bug.php">Bug</a>
         <a class="type-icon type-poison" href="../types/poison.php">Poison</a>
     </td>
+    <!-- <td>
+        <a class="type-icon type-bug" href=  <?php echo "../types/" . $temtem[0]->types . ".php"?>><?php echo $temtem[0]->types ?></a>
+        <a class="type-icon type-poison" href="../types/poison.php"><?php echo $temtem[0]->types ?></a>
+    </td> -->
 
-
+<?php
+echo '<pre>'; var_dump($temtem[0]); echo'</pre>';
+?>
 
