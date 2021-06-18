@@ -1,8 +1,7 @@
 <?php
 require __DIR__ . '/../pages/partials/header.php';
-$temtems = $temtemsdata->fetchAll();
-$image = $temtems[0]->portraitWikiUrl;
-$imageData = base64_encode(file_get_contents($image));
+
+
 
 ?>
 <style>
@@ -37,15 +36,17 @@ $imageData = base64_encode(file_get_contents($image));
         <div class="col-lg-4 col-md-4 text-center">
             <a class="navbar-brand" href=<?php "./index.php?page=temtem&id=" . $temtem->number ?>> <?php $temtem->name ?> </a>
             <div class="card" style="width: 18rem;">
-                <?php echo '<img class="card-img-top" src="data:image/jpeg;base64,' . base64_encode(file_get_contents($temtem->portraitWikiUrl)) . '" alt="Card image cap">' ?>
+                <?php /*echo '<img class="card-img-top" src="data:image/jpeg;base64,' . base64_encode(file_get_contents($temtem->wikiUrl)) . '" alt="Card image cap">' */?>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $temtem->name ?></h5>
 
 
                     <?php foreach ($temtem->stats as $key => $value) : ?>
-                        <?php if($key =="total"){break;}?>
+                        <?php if ($key == "total") {
+                            break;
+                        } ?>
                         <div class="progress">
-                            
+
                             <a><?php echo $key . ':' ?></a> &nbsp;
                             <?php if ($value >= 70) : ?>
                                 <div class="progress-bar bar-success" role="progressbar" aria-valuenow=<?php echo $value ?> aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $value ?>%">

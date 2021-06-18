@@ -1,8 +1,8 @@
 <?php
 require __DIR__ . '/../pages/partials/header.php';
 $temtem = $temtemsdata->insertOne($_GET['id']);
-$image = $temtem->portraitWikiUrl;
-$imageData = base64_encode(file_get_contents($image));
+/*$image = $temtem->portraitWikiUrl;
+$imageData = base64_encode(file_get_contents($image));*/
 
 ?>
 <div class="container">
@@ -12,7 +12,7 @@ $imageData = base64_encode(file_get_contents($image));
     <div class="row">
         <div class="col-lg-4 col-md-4 text-center">
             <div class="card" style="width: 18rem;">
-                <?php echo '<img class="card-img-top" src="data:image/jpeg;base64,' . $imageData . '" alt="Card image cap">'; ?>
+                <?php /*echo '<img class="card-img-top" src="data:image/jpeg;base64,' . $imageData . '" alt="Card image cap">'; */ ?>
                 <div class="card-body">
 
                     <p class="card-text"><?php echo $temtem->gameDescription ?></p>
@@ -21,7 +21,7 @@ $imageData = base64_encode(file_get_contents($image));
         </div>
         <div class="col-lg-4 col-md-4 text-center">
             <h1>Tempedia Data</h1>
-            <table class="data-table">
+            <table class="data-table table">
 
                 <tbody>
                     <tr>
@@ -51,27 +51,42 @@ $imageData = base64_encode(file_get_contents($image));
                         <td><a>sell price</a></td>
                         <td><a><?php echo "blabla" ?></a></td>
                     </tr>
+                    <tr>
+                        <td><a>tvYields</a></td>
+                        <td>
+                            <a>
+                                <?php foreach ($temtem->tvYields as $key => $value) {
+                                    if ($value > 0) {
+                                        echo "$key=$value, ";
+                                    }
+                                } ?>
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         <div class="col-lg-4 col-md-4 text-center">
             <div class="row">
                 <h1>tvYields</h1>
-                <table>
-                    <tbody>
-                        <tr>
+                <div class="col-lg-4 col-md-4 text-center"></div>
+                <div class="col-lg-4 col-md-4 text-center">
+                    <table class="data-table table table-dark">
+                        <tbody>
+
                             <?php
                             foreach ($temtem->tvYields as $key => $value) {
-                                echo "<a>$key=$value</a>";
+                                echo "<tr><td><a>$key=$value</a></td></tr>";
                             }
                             ?>
-                        </tr>
-                    </tbody>
-                </table>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="row">
                 <h1>Breeding</h1>
-                <table>
+                <table class="data-table table">
                     <tbody>
                         <tr>
                             <td><a>gender</a></td>
@@ -103,7 +118,7 @@ $imageData = base64_encode(file_get_contents($image));
             foreach ($temtems[113]->evolution->evolutionTree as $value) {
                 var_dump($value);
             }
-        }else{
+        } else {
             echo '<p>This temtems can\'t evolve </p>';
         }
         ?>

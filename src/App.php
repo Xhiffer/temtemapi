@@ -41,5 +41,6 @@ class App
         } else {
             require __DIR__ . '/../pages/notFound.php';
         }
+
     }
 }
